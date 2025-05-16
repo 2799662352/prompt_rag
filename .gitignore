@@ -1,0 +1,47 @@
+__pycache__/
+*.py[cod]
+*$py.class
+artifacts/chunks/
+artifacts/vector_stores/
+artifacts/downloaded_sites/
+artifacts/curated/
+artifacts/visualizations/
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.env
+.venv
+
+# 依赖目录
+lib/
+lib64/
+libs/
+build/
+dist/
+downloads/
+
+# pip相关
+.Python
+develop-eggs/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 日志和缓存
+logs/
+*.log
+.cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 系统文件
+.DS_Store
+Thumbs.db
