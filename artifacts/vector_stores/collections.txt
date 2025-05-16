@@ -1,0 +1,4 @@
+prompt_markdown_chunks_SZ_400_O_20_all-MiniLM-L6-v2
+prompt_markdown_chunks_SZ_400_O_20_all-mpnet-base-v2
+prompt_markdown_chunks_SZ_400_O_20_paraphrase-multilingual-MiniLM-L12-v2
+prompt_markdown_chunks_SZ_400_O_20_paraphrase-MiniLM-L6-v2
