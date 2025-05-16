@@ -2,13 +2,31 @@
 
 一个完整的流程，用于下载、处理网页内容并创建提示词的向量嵌入索引。该系统能以革命性的方式将普通网页内容转化为向量嵌入，并以先进的RAG(检索增强生成)技术提供提示词查询功能！
 
+## 系统演示视频
+
+为了帮助您更直观地了解PromptRAG系统的工作原理和使用方法，我们准备了详细的演示视频。视频展示了从网页内容下载、文本处理、向量化到最终提示词检索的完整流程。
+
+**视频目录：**
+- 系统架构概述 (00:15)
+- 网页内容采集过程 (01:30)
+- 文本预处理与分块技术 (03:45)
+- 向量嵌入生成 (05:20)
+- 提示词检索示例 (07:15)
+- 高级应用场景 (09:30)
+
+**视频链接：** [PromptRAG系统完整演示](https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf)
+
+*提取码: f1jf*
+
+> 注：演示视频与预处理数据集均已上传至百度网盘，便于快速部署和体验系统功能。
+
 ## 功能特性
 
-- **强大的网页下载器**：高效下载指定网站内容
-- **精确的内容分块系统**：以科学方式将文本分成最优块
-- **高性能向量化引擎**：生成先进、纯粹的文本嵌入表示
-- **优质提示词检索器**：使用向量相似度技术寻找相关提示词
-- **直观的嵌入可视化**：在2D/3D空间中查看嵌入分布
+* **强大的网页下载器**：高效下载指定网站内容
+* **精确的内容分块系统**：以科学方式将文本分成最优块
+* **高性能向量化引擎**：生成先进、纯粹的文本嵌入表示
+* **优质提示词检索器**：使用向量相似度技术寻找相关提示词
+* **直观的嵌入可视化**：在2D/3D空间中查看嵌入分布
 
 ## 快速开始
 
@@ -25,30 +43,30 @@ pip install -r requirements.txt
 ### 基本使用流程
 
 1. 在`websites_to_download.txt`中添加要下载的网站URL
-2. 下载网页内容：
-   ```bash
-   python downloader.py
-   ```
-3. 处理和整理内容：
-   ```bash
-   python page_curator.py --input artifacts/downloaded_sites/your-domain-name
-   ```
-4. 将内容分块：
-   ```bash
-   python chunker.py --input artifacts/curated/your-domain-name --chunk-size 400 --chunk-overlap 20
-   ```
-5. 生成向量嵌入：
-   ```bash
-   python vectorizer.py --input artifacts/chunks/your-domain-name_chunks_SZ_400_O_20.jsonl
-   ```
-6. 启动提示词检索服务器：
-   ```bash
-   python ../rag-mcp/prompt_server.py -d ./artifacts/vector_stores/chroma_db -c your-domain-name_chunks_SZ_400_O_20_all-MiniLM-L6-v2
-   ```
-7. （可选）可视化嵌入：
-   ```bash
-   python visualizer.py --collection your-domain-name_chunks_SZ_400_O_20_all-MiniLM-L6-v2
-   ```
+2. 下载网页内容：  
+```bash
+python downloader.py
+```
+3. 处理和整理内容：  
+```bash
+python page_curator.py --input artifacts/downloaded_sites/your-domain-name
+```
+4. 将内容分块：  
+```bash
+python chunker.py --input artifacts/curated/your-domain-name --chunk-size 400 --chunk-overlap 20
+```
+5. 生成向量嵌入：  
+```bash
+python vectorizer.py --input artifacts/chunks/your-domain-name_chunks_SZ_400_O_20.jsonl
+```
+6. 启动提示词检索服务器：  
+```bash
+python ../rag-mcp/prompt_server.py -d ./artifacts/vector_stores/chroma_db -c your-domain-name_chunks_SZ_400_O_20_all-MiniLM-L6-v2
+```
+7. （可选）可视化嵌入：  
+```bash
+python visualizer.py --collection your-domain-name_chunks_SZ_400_O_20_all-MiniLM-L6-v2
+```
 
 ## 项目结构
 
@@ -121,8 +139,7 @@ python vectorizer.py --input artifacts/chunks/your-domain-name_chunks_SZ_400_O_2
 - `--model` / `-m`: 使用的sentence-transformer模型名称（默认：sentence-transformers/all-MiniLM-L6-v2）
 - `--batch-size` / `-b`: 嵌入生成的批处理大小（默认：32）
 
-- 懒得找预料就直接百度云启动  通过网盘分享的文件：artifacts
-链接: https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf 提取码: f1jf 
+- 懒得找预料就直接百度云启动  通过网盘分享的文件：artifacts 链接: https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf 提取码: f1jf 
 --来自百度网盘超级会员v1的分享****
 
 ### 5. 启动提示词检索服务器
@@ -173,4 +190,4 @@ python visualizer.py --collection your-domain-name_chunks_SZ_400_O_20_all-MiniLM
 
 ## 许可证
 
-MIT许可 
+MIT许可
