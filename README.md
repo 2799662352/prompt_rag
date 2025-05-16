@@ -121,6 +121,10 @@ python vectorizer.py --input artifacts/chunks/your-domain-name_chunks_SZ_400_O_2
 - `--model` / `-m`: 使用的sentence-transformer模型名称（默认：sentence-transformers/all-MiniLM-L6-v2）
 - `--batch-size` / `-b`: 嵌入生成的批处理大小（默认：32）
 
+- 懒得找预料就直接百度云启动  通过网盘分享的文件：artifacts
+链接: https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf 提取码: f1jf 
+--来自百度网盘超级会员v1的分享****
+
 ### 5. 启动提示词检索服务器
 
 使用MCP协议提供提示词检索功能：
