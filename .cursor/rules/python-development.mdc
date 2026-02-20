@@ -1,0 +1,49 @@
+---
+description: Python 开发规范 - PromptRAG 项目代码风格和最佳实践
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# Python 开发规范
+
+## 代码风格
+
+- 使用 Python 3.8+ 语法
+- 遵循 PEP 8 编码规范
+- 使用 type hints 进行类型标注
+- 使用 logging 模块而非 print 进行日志输出
+
+## 依赖管理
+
+核心依赖：
+- `chromadb` - 向量数据库
+- `sentence-transformers` - 文本嵌入模型
+- `torch` - 深度学习框架
+- `beautifulsoup4` - HTML 解析
+- `langchain` - 文本分块处理
+- `plotly` - 数据可视化
+- `umap-learn` - 降维可视化
+
+## 项目结构
+
+```
+prompt_rag/
+├── artifacts/           # 生成文件目录（.gitignore 排除）
+│   ├── chunks/          # 文本块
+│   ├── curated/         # 整理后的文本
+│   ├── downloaded_sites/ # 原始 HTML
+│   ├── vector_stores/   # ChromaDB 向量数据库
+│   └── visualizations/  # 可视化结果
+├── chunker.py           # 文本分块
+├── downloader.py        # 网页下载
+├── page_curator.py      # 内容整理
+├── vectorizer.py        # 向量嵌入生成
+├── visualizer.py        # 嵌入可视化
+└── requirements.txt     # 依赖清单
+```
+
+## 错误处理
+
+- 所有外部调用（API、文件 I/O）必须使用 try-except
+- 使用 logger.error() 记录错误信息
+- 返回结构化的错误响应 `{"success": False, "error": "..."}`

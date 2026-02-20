@@ -1,0 +1,108 @@
+---
+description: ChromaDB RAG MCP Server - 向量检索增强生成系统的 Cursor AI 集成规则
+globs: "**/*.py"
+alwaysApply: true
+---
+
+# ChromaDB RAG MCP Server 使用规则
+
+## 概述
+
+本项目是一个 PromptRAG 系统，包含网页下载、文本处理、向量嵌入和检索功能。
+通过 `chroma_minimal_server` MCP 工具在 Cursor AI 中直接查询 ChromaDB 向量数据库。
+
+## MCP Server 配置
+
+```json
+{
+  "chroma_minimal_server": {
+    "command": "python",
+    "args": [
+      "chroma_mcp_server_minimal.py",
+      "--chromadb-path", "./artifacts/vector_stores/chroma_db",
+      "--collection-name", "<your-collection-name>",
+      "--model-name", "jinaai/jina-embeddings-v3",
+      "--device", "auto",
+      "--embedding-backend", "jina-api",
+      "--jina-model", "jina-embeddings-v3"
+    ],
+    "env": {
+      "JINA_API_KEY": "<your-jina-api-key>"
+    }
+  }
+}
+```
+
+## 可用 MCP 工具
+
+### 1. `query` - 向量相似度查询
+
+主要查询工具，在预配置的 ChromaDB 集合中搜索相似文本。
+
+**参数:**
+- `query_text` (string, 必填): 搜索查询文本
+- `n_results` (int, 默认 5): 返回结果数量
+
+**艺术家分析工作流:** 当查询包含特定艺术家名称时，系统自动执行：
+1. 详细的艺术家风格和标签分析
+2. 基于核心特征发现相似艺术家
+3. 生成可直接使用的艺术家组合字符串
+4. 为每个推荐提供详细说明
+
+### 2. `batch_query` - 批量查询
+
+高效的批量查询，一次性处理多个查询。
+
+**参数:**
+- `query_texts` (list[string], 必填): 查询文本列表
+- `n_results` (int, 默认 5): 每个查询的结果数量
+
+### 3. `remember` - 存储记忆
+
+将文本存储到记忆集合中供后续检索。
+
+**参数:**
+- `memory_text` (string, 必填): 要存储的文本内容
+
+### 4. `search_memory` - 搜索记忆
+
+在用户记忆集合中搜索相似内容。
+
+**参数:**
+- `query_text` (string, 必填): 搜索查询文本
+- `n_results` (int, 默认 5): 返回结果数量
+
+### 5. `list_collections` - 列出集合
+
+列出 ChromaDB 数据库中所有可用的集合。
+
+### 6. `get_performance_stats` - 性能统计
+
+返回系统性能统计信息，包括设备类型、CUDA 状态、GPU 信息等。
+
+## 嵌入后端
+
+支持两种嵌入后端：
+
+| 后端 | 说明 | 适用场景 |
+|------|------|----------|
+| `local` | 本地 GPU/CPU 推理 | 离线环境、低延迟需求 |
+| `jina-api` | Jina Cloud API | 节省 GPU 内存、高质量嵌入 |
+
+## 项目工作流
+
+```
+1. downloader.py    → 下载网页内容
+2. page_curator.py  → 清理 HTML 转为 Markdown
+3. chunker.py       → 文本分块（默认 400 字符，20 字符重叠）
+4. vectorizer.py    → 生成向量嵌入存入 ChromaDB
+5. MCP Server       → 在 Cursor AI 中提供检索服务
+```
+
+## 最佳实践
+
+- 分块时使用合理的 `chunk-size`（推荐 400）和 `chunk-overlap`（推荐 20）
+- 使用 `batch_query` 进行多条查询以提高效率
+- 利用 `remember` 工具保存重要的分析结果
+- 查询艺术家时，系统会自动进行风格分析和相似推荐
+- 使用 `get_performance_stats` 监控系统状态
