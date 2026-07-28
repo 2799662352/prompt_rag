@@ -14,7 +14,7 @@
 - 提示词检索示例 (07:15)
 - 高级应用场景 (09:30)
 
-**视频链接：** [PromptRAG系统完整演示](https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf)
+**视频链接：** [PromptRAG系统完整演示](https://pan.baidu.com/s/1et5TwKCCwmvoeAXd6e1ojw?pwd=f1jf) / [备用视频](https://github.com/2799662352/prompt_rag/blob/main/demo.mp4)
 
 *提取码: f1jf*
 
@@ -86,6 +86,7 @@ prompt_rag/
 ├── vectorizer.py      # 向量嵌入生成器
 ├── visualizer.py      # 嵌入可视化工具
 └── websites_to_download.txt # 要下载的网站列表
+├── demo.mp4           # 系统演示视频
 ```
 
 ## 详细工作流程
